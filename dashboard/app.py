@@ -65,9 +65,12 @@ else:
 
 options = _cached_filter_options()
 
+VH_SELECTED_IDS = [3, 146, 292, 1151, 1152, 1154, 1160, 1162, 1855, 2120, 2748, 2865, 2927, 2928, 2948, 3365, 3587, 3595, 3597, 3601, 3632, 3779, 3952, 3962, 3965, 3971, 3978, 3984, 3985, 4022, 4031, 4032, 4037, 4130, 4218, 5286, 5318, 5345, 5471, 5475, 5482, 5487, 6427, 6975, 7173, 7254, 7478, 7487, 7726, 7767, 7803, 7809, 7810, 7815, 8030, 8043, 8137, 8139, 8140, 8143, 8146, 8153, 8161, 8164, 8172, 8176, 8179, 8184, 8207, 8513]
+
 with st.sidebar:
     st.header("Filters")
     analyzed_only = st.toggle("Analyzed looks only", value=False)
+    vh_selected = st.toggle("VH Selected", value=False)
     st.caption("Filter looks by any combination")
 
     # -- Metadata filters --
@@ -177,6 +180,8 @@ if f_length:
     filters["length"] = f_length
 filters.update(suiting_filters)
 filters.update(fabric_filters)
+if vh_selected:
+    filters["look_ids"] = VH_SELECTED_IDS
 
 # ── Query & Display ──────────────────────────────────────────────────────────
 

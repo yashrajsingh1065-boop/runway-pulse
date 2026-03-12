@@ -716,6 +716,11 @@ def get_filtered_looks(filters: dict, analyzed_only: bool = True) -> list[dict]:
     # Only show looks with images
     clauses.append("l.local_path IS NOT NULL")
 
+    if filters.get("look_ids"):
+        placeholders = ",".join("?" * len(filters["look_ids"]))
+        clauses.append(f"l.id IN ({placeholders})")
+        params.extend(filters["look_ids"])
+
     # Join garment_attributes only if color/garment filters are active
     needs_ga = any(filters.get(k) for k in ("colors", "garment_types"))
     if needs_ga:
