@@ -274,7 +274,9 @@ def get_show_stats() -> dict:
         shows = conn.execute("SELECT COUNT(*) FROM shows").fetchone()[0]
         looks = conn.execute("SELECT COUNT(*) FROM looks").fetchone()[0]
         images = conn.execute("SELECT COUNT(*) FROM looks WHERE local_path IS NOT NULL").fetchone()[0]
-        seasons = conn.execute("SELECT COUNT(*) FROM seasons").fetchone()[0]
+        seasons = conn.execute(
+            "SELECT COUNT(DISTINCT s.season_id) FROM shows s"
+        ).fetchone()[0]
         fashion_weeks = conn.execute("SELECT COUNT(*) FROM fashion_weeks").fetchone()[0]
     return {
         "shows": shows,
