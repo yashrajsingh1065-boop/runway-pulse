@@ -1,0 +1,12 @@
+data/images/
+data/models/
+data/reports/
+.venv/
+__pycache__/
+*.pyc
+.scrapy/
+.env
+*.egg-info/
+dist/
+build/
+.DS_Store
