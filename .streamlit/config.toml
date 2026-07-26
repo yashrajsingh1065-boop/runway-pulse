@@ -1,0 +1,9 @@
+[server]
+headless = true
+runOnSave = true
+
+[runner]
+fastReruns = true
+
+[browser]
+gatherUsageStats = false
